@@ -2,3 +2,5 @@
 stonk
 
 https://www.kaggle.com/datasets/umerhaddii/berkshire-hathaway-stock-price-data
+
+random review paper: https://d1wqtxts1xzle7.cloudfront.net/73123311/ijca2017913453-libre.pdf?1634708618=&response-content-disposition=inline%3B+filename%3DStock_Prediction_using_Machine_Learning.pdf&Expires=1742870046&Signature=O5CUJ-CwlIizISmXS~tryxeeZRkOCXRKK1ETJOltGIXcXfngKw9QvguH7H-v4rOLxMoApEg54tV8USFjnjoXuvpDjVQLqaGVfIJahgK8Q5HrZIllAnCCJNqMJ4EmuZp-TMDHLBov9YMMv1qwl5BcqD1tY~6aAFrIKcxII30Oo3g8OT2ufC3ep3HkCKiRThQg0NwOuXUpLCb8KNeHTbUdAcs9u0cmfBNwwjL-b4KuwTimgBEH8gQXm0LCRsnItATNxD1rKlJ34CWWeCHgvMOcUXjp8vTH2B3x-0Uvwz994Ps5PaAjq~VJQP7xXtc~peG~u14CWIur8HrXLHxufzLeWQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
