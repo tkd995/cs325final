@@ -93,14 +93,21 @@ In summary, the study of stock price prediction using historical data is an esse
  Discuss the dataset for this project, any cleaning and normalization steps, and any trends and insights about the dataset (i.e., exploratory data analysis (EDA)).
 
  \subsection{Cleaning and Normalization}
+Ask what they did with the data
+
 
  \subsection{Trends and Insights}
+ To make sure ARIMA works properly, we remove trends and make the data more stationary.
+ Ask for any insights
 
 \section{Baseline Model}
 
 Many different baseline models to choose from.  Elaborate on the choices
 
 \subsection{Existing Solutions: }
+
+WE SHOULD ADD SOME FIGURES HERE
+
 \begin{itemize}
 \item{Linear Regression: }
 Used for predicting continuous values given independent values.  Such factors we can consider using for this model would be low, open, high, close, or volume.  There is a problem using linear regression, as data in stock prediction is typically nonlinear.
@@ -116,7 +123,7 @@ An advanced version of the Recurrent-Neural-Networks (RNN), where previous infor
 We chose to use an ARIMA with a Long Short Term Based Memory model as our baseline for this project.
 
 \subsection{Baseline Performance}
-Here is the data of the baseline
+Here is the data of the baseline, import a picture of it running
 
 \subsection{implementation}
 ASK how to implement and what was done
@@ -125,6 +132,7 @@ ASK how to implement and what was done
 Traditional indicators: Using moving averages, RSI, and MACD do not effectively capture nonlinear relationships between data.
 
 Propose enhancements to the machine learning pipeline, such as new feature engineering, baseline model improvements, and or visualization.
+
 
 
 
