@@ -43,7 +43,7 @@ email address or ORCID}
 \maketitle
 
 \begin{abstract}
-The purpose of predicting stock prices is to ...  This can be done by developing a machine learning program that trains itself on previous stock prices.  There exist many different learning models to predict the future of stocks, though many of them are not considered efficient enough.  This article will take an existing learning model and further improve it using learning techniques such as ARIMA, Linear Regression, and Random forests.  ADD ENDING
+The purpose of predicting stock prices is to ...  This can be done by developing a machine learning program that trains itself on previous stock prices.  There exist many different learning models to predict the future of stocks, though many of them are not considered efficient enough.  The aim of this project is to take an existing learning model and further improve it using learning techniques such as ARIMA, Linear Regression, or Random forests.  For this article, we will be using an ARIMA with Long Short Term Based Memory.  We hope to improve it by..
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -98,21 +98,22 @@ In summary, the study of stock price prediction using historical data is an esse
 
 \section{Baseline Model}
 
-Many different baseline models to choose from.  Here are some examples, blah blah
+Many different baseline models to choose from.  Elaborate on the choices
 
 \subsection{Existing Solutions: }
 \begin{itemize}
-\item{Regression Based Model: }
-Used for predicting continuous values given independent values
 \item{Linear Regression: }
+Used for predicting continuous values given independent values.  Such factors we can consider using for this model would be low, open, high, close, or volume.  There is a problem using linear regression, as data in stock prediction is typically nonlinear.
 
 \item{Random Forest: }
-\item{Long Short Term Based Memory Model: }
 
+
+\item{Long Short Term Based Memory Model: }
+An advanced version of the Recurrent-Neural-Networks (RNN), where previous information is used in training.  
 \end{itemize}
 
 \subsection{Selection of Baseline}
-we chose to use a BLANK model because blah blah blah
+We chose to use an ARIMA with a Long Short Term Based Memory model as our baseline for this project.
 
 \subsection{Baseline Performance}
 Here is the data of the baseline
