@@ -27,17 +27,17 @@ ctucke24@vols.utk.edu}
 Knoxville, US \\
 tvanmete@vols.utk.edu}
 \and
-\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
+\IEEEauthorblockN{Danyil Chuprynov}
 \IEEEauthorblockA{\textit{COSC 325} \\
 \textit{Ctrl Alt Delete}\\
 Knoxvile, US \\
-email address or ORCID}
+dchupryn@vols.utk.edu}
 \and
-\IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
+\IEEEauthorblockN{Ian Henson}
 \IEEEauthorblockA{\textit{COSC 325} \\
 \textit{Ctrl Alt Delete}\\
 Knoxvile, US \\
-email address or ORCID}
+tkd995@vols.utk.edu}
 }
 
 \maketitle
@@ -95,18 +95,21 @@ In summary, the study of stock price prediction using historical data is an esse
  \subsection{Cleaning and Normalization}
 Ask what they did with the data
 
+look after data in 2020, remove empty rows, found the log of the closed columns to use to find PPQ values in PAC CFA graphs
+
 Put in a picture of how our data is stored
 
-\includegraphics[scale=0.5]{example-image.jpg}
+\includegraphics[scale=0.5]{example-image.jpg} % ball graphs
 
 
  \subsection{Trends and Insights}
- To make sure ARIMA works properly, we remove trends and make the data more stationary.
+ To make sure ARIMA works properly, we remove trends and make the data more stationary.  
  Ask for any insights
+ \includegraphics[scale=0.5]{example-image.jpg} %crazy graph blue
 
 \section{Baseline Model}
 
-Many different baseline models to choose from.  Elaborate on the choices
+Once we have cleaned our data, we now need to choose a baseline model to work on.  Below are some of the models and the data they generated for us.
 
 \subsection{Existing Solutions: }
 
@@ -118,7 +121,7 @@ Used for predicting continuous values given independent values.  Such factors we
 \includegraphics[scale=0.5]{example-image.jpg} % screenshots/linreg.png
 
 \item{Random Forest: }
-A Random Forest model does...  Benefits:  Negatives:
+A Random Forest model does...  Benefits:  provided the best results Negatives:
 \includegraphics[scale=0.5]{example-image.jpg} %screenshots/ranfor.png
 
 \item{Long Short Term Based Memory Model: }
@@ -143,18 +146,15 @@ Traditional indicators: Using moving averages, RSI, and MACD do not effectively 
 
 Propose enhancements to the machine learning pipeline, such as new feature engineering, baseline model improvements, and or visualization.
 
+one idea was to use:  smooth moving averages, simple moving averages for 10-50 days before
 
+volatility, creating those in order to get more accurate recent data, cause right now we are using 2 years of data, only use recent data to determine better predictions
+
+combining random forests with ARMIA, maybe even linreg, while mixing them with weights to have a more accurate prediction, take the pros and cons of models to make a much better prediction
 
 
 \begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
-\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
-\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
-\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
-\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
-\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
-\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
-\bibitem{b8}[1]I. Parmar et al., “Stock Market Prediction Using Machine Learning,” 2018 First International Conference on Secure Cyber Computing and Communication (ICSCCC), Dec. 2018, doi: https://doi.org/10.1109/icsccc.2018.8703332.
+\bibitem{b1}[1]I. Parmar et al., “Stock Market Prediction Using Machine Learning,” 2018 First International Conference on Secure Cyber Computing and Communication (ICSCCC), Dec. 2018, doi: https://doi.org/10.1109/icsccc.2018.8703332.
 ‌
 \end{thebibliography}
 \vspace{12pt}
