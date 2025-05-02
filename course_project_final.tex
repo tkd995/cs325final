@@ -55,9 +55,9 @@ component, formatting, style, styling, insert
 \section{Introduction}
 Predicting stock prices is a challenging yet critical task in finance due to market volatility and unpredictability. Machine learning provides powerful tools capable of identifying complex patterns within historical financial data, which can lead to more accurate stock price forecasts.
 
-We aim to specifically examine the application of machine learning techniques to predict the stock prices of Berkshire Hathaway, a leading investment firm known for its diverse portfolio and market influence (Umer Haddi, 2023). Accurate prediction models for Berkshire Hathaway's stock could significantly assist investors in making informed decisions, managing investment risks, and capitalizing on market trends.
+We aim to specifically examine the application of machine learning techniques to predict the stock prices of Berkshire Hathaway, a leading investment firm known for its diverse portfolio and market influence [1]. Accurate prediction models for Berkshire Hathaway's stock could significantly assist investors in making informed decisions, managing investment risks, and capitalizing on market trends.
 
-Utilizing the Berksire-Hathaway historical stock data from Kaggle (Umer Haddi, 2023), we aim to:
+Utilizing the Berksire-Hathaway historical stock data from Kaggle, we aim to:
 \begin{itemize}
     \item Analyze and pre-process historical data to identify predictive features.
     \item Implement and evaluate multiple ML models to determine their forecasting accuracy.
@@ -89,7 +89,12 @@ The preprocessing steps above were critical to improving and ensuring the effect
     \item \textbf{Overall Stock Price Trend}: Berkshire Hathaway's stock price exhibited an increasing trend over the analyzed period from January 2020 to July 2024. The closing price started around \$228 in early 2020 and rose significantly, reaching approximately \$438 in July of 2024, suggesting overall growth and positive long-term performance.
     \item \textbf{Seasonality and Stationarity}: Initial tests for stationarity ADF test indicated non-stationarity in raw closing prices (Test Statistic: -0.52, P-Value: 0.89). Thus, data transformations (log differences) were applied to make the dataset stationary, which is essential for effective ARIMA modeling.
     \item \textbf{Volume Insights}: The daily traded volume shows significant variability, indicating periods of increased investor activity. The high volatility in trading volume suggests events or news that significantly influenced investor behavior and stock prices.
+    \includegraphics[scale=0.25]{screenshots/linreg.png} %screenshots/linreg.png
     \item \textbf{Model Performance Comparison}: ARIMA and Random Forest models produced similar predictive accuracy (RMSE approximately 22.2 and 22.1, respectively), outperforming Linear Regression, which had notably higher errors (RMSE approximately 31.6). This confirms non-linearity in stock price data and highlights the effectiveness of non-linear models like ARIMA and Random Forest.
+    \\
+     \includegraphics[scale=0.125]{screenshots/linreg.png} %screenshots/linreg.png
+      \includegraphics[scale=0.125]{screenshots/linreg.png} %screenshots/ranfor.png
+       \includegraphics[scale=0.125]{screenshots/linreg.png} %screenshots/arima.png
     \item \textbf{Error Analysis}: Both ARIMA and Random Forest displayed relatively low and similar absolute errors (~18), indicating that while there are predictive limitations, both models adequately captured short-term movements in stock prices.
     \item \textbf{Possible Overfitting with Random Forest}: Random Forest exhibited consistent predictions across test days (constant values), suggesting possible overfitting to the training data. While it resulted in low errors, the model’s predictions lacked variability, potentially limiting its usefulness in dynamic real-world trading scenarios.
 \end{itemize}
@@ -101,7 +106,7 @@ The preprocessing steps above were critical to improving and ensuring the effect
 \section{Distribution of Work}
 
 \begin{thebibliography}{00}
-\bibitem{b1} CITATION
+\bibitem{b1} Umer Haddii, “Berkshire Hathaway Stock Price Data,” Kaggle.com, 2024. https://www.kaggle.com/datasets/umerhaddii/berkshire-hathaway-stock-price-data
 
 \end{thebibliography}
 
