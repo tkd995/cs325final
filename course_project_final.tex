@@ -101,6 +101,36 @@ The preprocessing steps above were critical to improving and ensuring the effect
 
 \section{Baseline Model}
 
+Before we can process our dataset, we must first decide the best possible model as our baseline. As there are many different baselines, all with their strengths and weaknesses, we explored some of the existing solutions to determine which one to use.
+
+\subsection{Existing Solutions}
+
+\begin{itemize}
+
+    \item \textbf{Linear Regression}: Linear Regression is a simple model that people have used for stock market predictions. However, after using a Linear Regression model on our data, our predictions were linear and flat. This is likely due to our data being nonlinear, making Linear Regressions an unideal model to use.   
+
+    \item \textbf{Random Forests}: Another popular model used in stock market predictions is Random Forests. Random Forests, compared to Linear Regression, is capable of handling non-linear data and provides better results such as a lower MSE. There is some drawbacks, as random forests struggles with time series data.
+
+    \item \textbf{ARIMA}: ARIMA models are also well known in stock market predictions and considered one of the best among other models[1]. Just like Random Forests, ARIMA models can handle non-linear data, but requires the data to be stationary for best performance. 
+
+    \item \textbf{Moving Average}: Moving Average is another consideration as they have been widely used before. They are known being able to be tailored to different time-frames and smoothing price-data, but requires extra implementations, such as a Regression model, to fine-tune signal delays[2].
+
+\end{itemize}
+
+\subsection{Baseline Model}
+
+We used a Manual ARIMA Model as our baseline for this project. Compared to other known solutions, ARIMA is known for providing better results and being more accurate.
+
+\begin{itemize}
+
+    \item \textbf{Performance}:  \\
+    \includegraphics[scale=0.30]{ARIMA.png} %put a picture of the ARIMA model
+
+    \item \textbf{Further Analysis}:
+    The baseline model offered several benefits, such as being able to handle data non-stationary, auto regress on past values, and eliminate the need for external values. However, the model also came with its own issues. The predictions line became linear, indicating that our model is most likely oversimplified, and the model struggled with sudden shocks, such as the COVID-19 pandemic.
+
+\end{itemize}
+
 \section{Model Improvements}
 
 \section{Distribution of Work}
