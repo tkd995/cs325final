@@ -78,8 +78,8 @@ Detailed preprocessing steps applied to the data included:
     \item Filtering to include only data from January 2020 onwards to maintain consistency and relevance.
     \item Handling missing values by forward-filling daily gaps to maintain continuity, ensuring no temporal discontinuities in the dataset.
     \item Transforming the 'Close' price feature using a logarithmic scale to stabilize variance and manage heterogeneity of variance.
-    \item Calculating the first-order differences of the log-transformed close prices to achieve stationarity, a requirement for ARIMA modeling, confirmed through the Augmented Dickey-Fuller (ADF) test.
-    \item Creating an additional ordinal date feature by converting dates into numerical format, facilitating the use of date information in machine learning models that require numerical input.
+    \item Calculating the first-order differences on all features to achieve stationarity, a requirement for ARIMA modeling, confirmed through the Augmented Dickey-Fuller (ADF) test.
+    \item Then a moving average and standard deviation features was calculated to improve accuracy, the latter was required for ARIMA.
 \end{itemize}
 
 The preprocessing steps above were critical to improving and ensuring the effectiveness of the predictive models employed in this study.
