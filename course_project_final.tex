@@ -53,36 +53,46 @@ component, formatting, style, styling, insert
 \end{IEEEkeywords}
 
 \section{Introduction}
-This document is a model and instructions for \LaTeX.
-Please observe the conference page limits. 
+Predicting stock prices is a challenging yet critical task in finance due to market volatility and unpredictability. Machine learning provides powerful tools capable of identifying complex patterns within historical financial data, which can lead to more accurate stock price forecasts.
 
-\section{Ease of Use}
+We aim to specifically examine the application of machine learning techniques to predict the stock prices of Berkshire Hathaway, a leading investment firm known for its diverse portfolio and market influence (Umer Haddi, 2023). Accurate prediction models for Berkshire Hathaway's stock could significantly assist investors in making informed decisions, managing investment risks, and capitalizing on market trends.
 
-\subsection{Maintaining the Integrity of the Specifications}
+Utilizing the Berksire-Hathaway historical stock data from Kaggle (Umer Haddi, 2023), we aim to:
+\begin{itemize}
+    \item Analyze and pre-process historical data to identify predictive features.
+    \item Implement and evaluate multiple ML models to determine their forecasting accuracy.
+    \item Assess the practical effectiveness of ML in predicting Berkshire Hathaway’s stock performance.
+\end{itemize}
 
-The IEEEtran class file is used to format your paper and style the text. All margins, 
-column widths, line spaces, and text fonts are prescribed; please do not 
-alter them. You may note peculiarities. For example, the head margin
-measures proportionately more than is customary. This measurement 
-and others are deliberate, using specifications that anticipate your paper 
-as one part of the entire proceedings, and not as an independent document. 
-Please do not revise any of the current designations.
+Through these objectives, the project seeks to contribute to improving investment strategies and demonstrating the value of ML applications in financial market analysis.
 
-\section{Prepare Your Paper Before Styling}
-Before you begin to format your paper, first write and save the content as a 
-separate text file. Complete all content and organizational editing before 
-formatting. Please note sections \ref{AA}--\ref{SCM} below for more information on 
-proofreading, spelling and grammar.
+\section{Data Exploration}
 
-Keep your text and graphic files separate until after the text has been 
-formatted and styled. Do not number text heads---{\LaTeX} will do that 
-for you.
+\subsection{The Dataset}
 
-\subsection{Abbreviations and Acronyms}\label{AA}
-Define abbreviations and acronyms the first time they are used in the text, 
-even after they have been defined in the abstract. Abbreviations such as 
-IEEE, SI, MKS, CGS, ac, dc, and rms do not have to be defined. Do not use 
-abbreviations in the title or heads unless they are unavoidable.
+The dataset used in this study is the Berkshire Hathaway Stock Price Data, sourced from Kaggle (Haddi, 2023). This dataset includes historical stock information consisting of 1,671 daily samples collected from January 2, 2020, to July 29, 2024. Each sample contains eight features: open price, high price, low price, close price, adjusted close price, trading volume, log-transformed closing price, and date converted to an ordinal number format. The dataset is continuous and inherently balanced as it involves time-series data rather than categorical classes. Due to its nature, it requires special pre-processing techniques, such as stationary adjustments and log transformations, to ensure effective application of predictive models.
+
+\subsection{Preprocessing}
+Detailed preprocessing steps applied to the data included:
+\begin{itemize}
+    \item Filtering to include only data from January 2020 onwards to maintain consistency and relevance.
+    \item Handling missing values by forward-filling daily gaps to maintain continuity, ensuring no temporal discontinuities in the dataset.
+    \item Transforming the 'Close' price feature using a logarithmic scale to stabilize variance and manage heterogeneity of variance.
+    \item Calculating the first-order differences of the log-transformed close prices to achieve stationarity, a requirement for ARIMA modeling, confirmed through the Augmented Dickey-Fuller (ADF) test.
+    \item Creating an additional ordinal date feature by converting dates into numerical format, facilitating the use of date information in machine learning models that require numerical input.
+\end{itemize}
+
+The preprocessing steps above were critical to improving and ensuring the effectiveness of the predictive models employed in this study.
+
+\subsection{Data Analysis}\label{AA}
+\begin{itemize}
+    \item \textbf{Overall Stock Price Trend}: Berkshire Hathaway's stock price exhibited an increasing trend over the analyzed period from January 2020 to July 2024. The closing price started around \$228 in early 2020 and rose significantly, reaching approximately \$438 in July of 2024, suggesting overall growth and positive long-term performance.
+    \item \textbf{Seasonality and Stationarity}: Initial tests for stationarity ADF test indicated non-stationarity in raw closing prices (Test Statistic: -0.52, P-Value: 0.89). Thus, data transformations (log differences) were applied to make the dataset stationary, which is essential for effective ARIMA modeling.
+    \item \textbf{Volume Insights}: The daily traded volume shows significant variability, indicating periods of increased investor activity. The high volatility in trading volume suggests events or news that significantly influenced investor behavior and stock prices.
+    \item \textbf{Model Performance Comparison}: ARIMA and Random Forest models produced similar predictive accuracy (RMSE approximately 22.2 and 22.1, respectively), outperforming Linear Regression, which had notably higher errors (RMSE approximately 31.6). This confirms non-linearity in stock price data and highlights the effectiveness of non-linear models like ARIMA and Random Forest.
+    \item \textbf{Error Analysis}: Both ARIMA and Random Forest displayed relatively low and similar absolute errors (~18), indicating that while there are predictive limitations, both models adequately captured short-term movements in stock prices.
+    \item \textbf{Possible Overfitting with Random Forest}: Random Forest exhibited consistent predictions across test days (constant values), suggesting possible overfitting to the training data. While it resulted in low errors, the model’s predictions lacked variability, potentially limiting its usefulness in dynamic real-world trading scenarios.
+\end{itemize}
 
 \subsection{Units}
 \begin{itemize}
@@ -125,6 +135,7 @@ equation numbers displayed. If you forget that, you might write an
 article in which the equation numbers skip from (17) to (20), causing
 the copy editors to wonder if you've discovered a new method of
 counting.
+
 
 {\BibTeX} does not work by magic. It doesn't get the bibliographic
 data from thin air but from .bib files. If you use {\BibTeX} to produce a
@@ -257,6 +268,8 @@ element symbols.
 
 For papers published in translation journals, please give the English 
 citation first, followed by the original foreign-language citation \cite{b6}.
+
+\section{Model Improvements}
 
 \begin{thebibliography}{00}
 \bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
