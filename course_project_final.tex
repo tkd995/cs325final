@@ -114,33 +114,78 @@ Before we can process our dataset, we must first decide the best possible model 
 
 \subsection{Baseline Model}
 
-We used a Manual ARIMA Model as our baseline for this project. Compared to other known solutions, ARIMA is known for providing better results and being more accurate. 
-
-\begin{itemize}
-
-    \item \textbf{Implementation}: We chose our dataset to only include data from the years 2015-2024, removing all empty columns. The dataset was also made stationary, since ARIMA performs best on stationary data, and we calculated log transformation to remove any noise or variance. We then had to choose the parameters (p, d, q) for the ARIMA, which are the Auto Regressive Term (AR) (p), obtained from Partial Auto Correlation Function (PACF), Integral Term (I) (d), obtained from finding the number of times data is differenced to become stationary, and Moving Average Term (MA) (q), obtained from the Auto Correlation Function (ACF). Once we obtained the parameters, out model was fitted using said parameters. Lastly, we plotted the forecast of our model to assist in our model evaluation.    
-
-
-    \item \textbf{Performance}:  \\
-    \includegraphics[scale=0.30]{ARIMA.png} %put a picture of the ARIMA model
-
-    \item \textbf{Further Analysis}:
-    The baseline model offered several benefits, such as being able to handle data non-stationary, auto regress on past values, and eliminate the need for external values. However, the model also came with its own issues. The predictions line became linear, indicating that our model is most likely oversimplified, and the model struggled with sudden shocks, such as the COVID-19 pandemic.
-
-\end{itemize}
+For our baseline model, we chose the ARIMA (AutoRegressive Integrated Moving Average) algorithm due to its well-established capability in modeling and forecasting time series data. ARIMA has been a popular approach in financial modeling for some time, with many prior works using it as a benchmark in predictions. (INSERT CITATION FOR KAGGLE).
+Our implementation followed the approach outlined in a Kaggle notebook titled Stock Prices Prediction Using Classic Auto ARIMA, which provided a solid foundation for our goal of predicting the stock price. We started by transforming our close price by log. This was to stabilize variance and reduce the noise found in the dataset. Next, we tested the data for stationarity, which is a requirement for data being used in an ARIMA model, using the Augmented Dickey-Fuller (ADF) test. The results concluded that our dataset was non-stationary, which had us apply differencing techniques to remove trends and seasonality.
+Then, to determine our hyperparameters for the model, we manually examined the Auto Correlation Function (ACF) and Partial Auto Correlation Function (PACF) plots. This led us to select p=0, d=1, q=0 for our configuration. After training the model, we evaluated it on our test set (70/30) split and got a Root Mean Square Error (RMSE) of 22.24.
+To compare this model, we also trained a classic Linear Regression model and a Random Forest Regressor. These had an RMSE value of 31.58 and 22.09, respectively. Although the random forest performed slightly better than the ARIMA model in terms of error, it lacked the time series awareness that ARIMA provides. Linear regression performed the worst due to its inability to capture non-linear and sequential trends in stock prices.
+From our testing, we concluded that each model had its own strengths and weaknesses. ARIMA was able to handle time series data but struggled with capturing non-linear behavior. Our Random Forest performed better when learning non-linear behavior but did not model time dependency well. 
+These findings motivated our plan to create an ensemble model between ARIMA and Random Forest, with ARIMA modeling the trend and Random Forest capturing the residual, non-linear variations. Our goal was to combine their strengths and reduce overall error in future iterations.
 
 \section{Model Improvements}
+
+
+
+The initial model development utilized basic ARIMA, Linear Regression, and Random Forest models to establish a baseline for predicting stock prices. After analyzing the preliminary results, we implemented the following key improvements:
+
+\begin{enumerate}
+    \item ARIMA to SARIMA Transition: After looking at the seasonal decomposition of the time series data, we identified significant seasonal patterns that the classic ARIMA model failed to capture. By implementing SARIMA (seasonal ARIMA), we enhanced the model’s ability to account for these patterns. We aimed to reduce the impact seasonality would have within our dataset, but SARIMA was able to strength our model further.
+
+    \item Auto-ARIMA Parameter Optimization: Rather than relying on manual calculations to optimize our hyper parameters, we implemented Auto-ARIMA to calculate the most optimal configuration. This process determined that (2,1,0) was the strongest combination.
+
+    \item Ensemble Approach: To leverage the pros and cons of the SARIMA and Random Forest Regressor models, we implemented a dynamically weighted strategy. Using a rolling window of 10 time steps, we calculated the recent Mean Squared Error (MSE) of each model’s predictions. We then applied inverse-error weighting to the predictions, giving a higher weight to the model with a lower error. At each step, the ensemble prediction was computed as a weighted average of the two models’ output using the weights. This allowed the ensemble to adapt over time, reducing the error and emphasizing the better performing model.
+
+\end{enumerate}
+
+
+\textbf{Performance Evaluation:}
+
+\begin{enumerate}
+
+    \item Mean Square Error (MSE):
+
+    \begin{enumerate}
+        \item SARIMA: 0.00999
+        \item Random Forest: 0.0081
+        \item Ensemble: 0.0073
+    \end{enumerate}
+
+    \item Mean Absolute Error (MAE):
+    
+    \begin{enumerate}
+        \item SARIMA: 0.0801
+        \item Random Forest: 0.0577
+        \item Ensemble: 0.061
+    \end{enumerate}
+
+    \item Root Mean Squared Error (RMSE):
+
+    \begin{enumerate}
+        \item SARIMA: 0.099
+        \item Random Forest: 0.090
+        \item Ensemble: 0.0859
+    \end{enumerate}    
+
+    \item Confidence Intervals: For the model, we calculated 95\% confidence intervals to quantify the prediction uncertainty of our model, visualized by the shaded regions. 
+
+    
+\end{enumerate}
+
+\textbf{Model Performance Analysis:}
+
+The Random Forest model performed roughly 10\% better in all of our evaluation metrics. This suggests that the non-linear patterns in the stock prices are significant factors that time series models struggle to capture.
+However, when both models are combined with dynamic weights, the benefits of each model help to reduce the overall error. As our Random Forest Regressor started to plateau, the SARIMA model helped pick up the weight. 
+The confidence intervals help show the wider uncertainty during periods of higher volatility in the market. One example of this is the COVID-19 market disruption in 2020.
+
+\textbf{Conclusion:}
+
+This study investigated the effectiveness of various modeling approaches for stock price prediction. Combining the strength of two independently strong models used for stock prediction, we were able to improve the accuracy of prediction utilizing dynamic weights. Our findings show several key insights that contribute to the broader understanding of stock prediction methods. 
+The baseline ARIMA model provided a solid foundation for time series prediction, demonstrating reasonable performance with a root mean square error of 0.099. However, this traditional approach exposed limitations in capturing more complex patterns within the closing price of a single stock. In contrast, the Random Forest Regressor showed its strengths in modeling non-linear relationships, giving a better RMSE of 0.09. 
+During our model refinement process, we uncovered the strength of both of these models. When switching from the classic ARIMA model to a SARIMA model to better capture seasonality, fine tuning our hyperparameters with auto-ARIMA, and most importantly utilizing our approach for a dynamically weighted ensemble approach. We were able to improve our model’s error down to 0.0859, outperforming both models.
 
 \section{Distribution of Work}
 
 \begin{thebibliography}{00}
-\bibitem{b1} A. A. Ariyo, A. O. Adewumi and C. K. Ayo, "Stock Price Prediction Using the ARIMA Model," 2014 UKSim-AMSS 16th International Conference on Computer Modelling and Simulation, Cambridge, UK, 2014, pp. 106-112, doi: 10.1109/UKSim.2014.67. keywords: {Predictive models;Indexes;Time series analysis;Forecasting;Data models;Computational modeling;Mathematical model;ARIMA model;Stock Price prediction;Stock market;Short-term prediction}
-\bibitem{b2} S. Dinesh, N. R. R, S. P. Anusha and S. R, "Prediction of Trends in Stock Market using Moving Averages and Machine Learning," 2021 6th International Conference for Convergence in Technology (I2CT), Maharashtra, India, 2021, pp. 1-5, doi: 10.1109/I2CT51068.2021.9418097. keywords: {Machine learning algorithms;Machine learning;Predictive models;Tools;Market research;Prediction algorithms;Stock markets;Moving average;Moving average Crossover;Trend prediction;Regression;Machine Learning;Stock Market}
-
-
-
-
-
+\bibitem{b1} vafaknm, “stock prices prediction using classic/auto ARIMA,” Kaggle.com, Sep. 11, 2022. https://www.kaggle.com/code/vafaknm/stock-prices-prediction-using-classic-auto-arima\#Berkshire-Hathaway (accessed May 03, 2025).
 \end{thebibliography}
 
 \end{document}
