@@ -96,15 +96,51 @@ The preprocessing steps above were critical to improving and ensuring the effect
 
 \section{Baseline Model}
 
+Before we can process our dataset, we must first decide the best possible model as our baseline. As there are many different baselines, all with their strengths and weaknesses, we explored some of the existing solutions to determine which one to use.
+
+\subsection{Existing Solutions}
+
+\begin{itemize}
+
+    \item \textbf{Linear Regression}: Linear Regression is a simple model that people have used for stock market predictions. However, after using a Linear Regression model on our data, our predictions were linear and flat. This is likely due to our data being nonlinear, making Linear Regressions an unideal model to use.   
+
+    \item \textbf{Random Forests}: Another popular model used in stock market predictions is Random Forests. Random Forests, compared to Linear Regression, is capable of handling non-linear data and provides better results such as a lower MSE. There is some drawbacks, as random forests struggles with time series data.
+
+    \item \textbf{ARIMA}: ARIMA models are also well known in stock market predictions and considered one of the best among other models[1]. Just like Random Forests, ARIMA models can handle non-linear data, but requires the data to be stationary for best performance. 
+
+    \item \textbf{Moving Average}: Moving Average is another consideration as they have been widely used before. They are known being able to be tailored to different time-frames and smoothing price-data, but requires extra implementations, such as a Regression model, to fine-tune signal delays[2].
+
+\end{itemize}
+
+\subsection{Baseline Model}
+
+We used a Manual ARIMA Model as our baseline for this project. Compared to other known solutions, ARIMA is known for providing better results and being more accurate. 
+
+\begin{itemize}
+
+    \item \textbf{Implementation}: We chose our dataset to only include data from the years 2015-2024, removing all empty columns. The dataset was also made stationary, since ARIMA performs best on stationary data, and we calculated log transformation to remove any noise or variance. We then had to choose the parameters (p, d, q) for the ARIMA, which are the Auto Regressive Term (AR) (p), obtained from Partial Auto Correlation Function (PACF), Integral Term (I) (d), obtained from finding the number of times data is differenced to become stationary, and Moving Average Term (MA) (q), obtained from the Auto Correlation Function (ACF). Once we obtained the parameters, out model was fitted using said parameters. Lastly, we plotted the forecast of our model to assist in our model evaluation.    
+
+
+    \item \textbf{Performance}:  \\
+    \includegraphics[scale=0.30]{ARIMA.png} %put a picture of the ARIMA model
+
+    \item \textbf{Further Analysis}:
+    The baseline model offered several benefits, such as being able to handle data non-stationary, auto regress on past values, and eliminate the need for external values. However, the model also came with its own issues. The predictions line became linear, indicating that our model is most likely oversimplified, and the model struggled with sudden shocks, such as the COVID-19 pandemic.
+
+\end{itemize}
+
 \section{Model Improvements}
 
 \section{Distribution of Work}
 
 \begin{thebibliography}{00}
-\bibitem{b1} CITATION
+\bibitem{b1} A. A. Ariyo, A. O. Adewumi and C. K. Ayo, "Stock Price Prediction Using the ARIMA Model," 2014 UKSim-AMSS 16th International Conference on Computer Modelling and Simulation, Cambridge, UK, 2014, pp. 106-112, doi: 10.1109/UKSim.2014.67. keywords: {Predictive models;Indexes;Time series analysis;Forecasting;Data models;Computational modeling;Mathematical model;ARIMA model;Stock Price prediction;Stock market;Short-term prediction}
+\bibitem{b2} S. Dinesh, N. R. R, S. P. Anusha and S. R, "Prediction of Trends in Stock Market using Moving Averages and Machine Learning," 2021 6th International Conference for Convergence in Technology (I2CT), Maharashtra, India, 2021, pp. 1-5, doi: 10.1109/I2CT51068.2021.9418097. keywords: {Machine learning algorithms;Machine learning;Predictive models;Tools;Market research;Prediction algorithms;Stock markets;Moving average;Moving average Crossover;Trend prediction;Regression;Machine Learning;Stock Market}
+
+
+
+
 
 \end{thebibliography}
 
 \end{document}
-
-

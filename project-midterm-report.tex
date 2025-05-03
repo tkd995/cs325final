@@ -11,12 +11,12 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Course Project Midterm Report\\
+\title{Course Project Final Report\\
 
 }
 
 \author{\IEEEauthorblockN{Clayton Tucker}
-\IEEEauthorblockA{\textit{COSC 325} \\
+\IEEEauthorblockA{\textit{COSC325} \\
 \textit{Ctrl Alt Delete}\\
 Knoxville, US \\
 ctucke24@vols.utk.edu}
@@ -43,123 +43,101 @@ tkd995@vols.utk.edu}
 \maketitle
 
 \begin{abstract}
-The purpose of predicting stock prices is to ...  This can be done by developing a machine learning program that trains itself on previous stock prices.  There exist many different learning models to predict the future of stocks, though many of them are not considered efficient enough.  The aim of this project is to take an existing learning model and further improve it using learning techniques such as ARIMA, Linear Regression, or Random forests.  For this article, we will be using an ARIMA with Long Short Term Based Memory.  We hope to improve it by..
+This document is a model and instructions for \LaTeX.
+This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes, 
+or Math in Paper Title or Abstract.
 \end{abstract}
 
 \begin{IEEEkeywords}
-ARIMA, Linear Regression, Random forest, Stock Price Prediction
+component, formatting, style, styling, insert
 \end{IEEEkeywords}
 
 \section{Introduction}
-The prediction of stock prices has long been a subject of interest for investors, financial analysts, and researchers. Accurate prediction of stock prices can provide valuable information for decision-making in trading and investment strategies. However, stock price prediction is inherently complex due to the volatile and dynamic nature of financial markets. This project focuses on time series analysis to predict stock prices, specifically using historical stock data from Berkshire Hathaway Inc.
+Predicting stock prices is a challenging yet critical task in finance due to market volatility and unpredictability. Machine learning provides powerful tools capable of identifying complex patterns within historical financial data, which can lead to more accurate stock price forecasts.
 
-\subsection{Problem Overview}
-Stock prices are influenced by a multitude of factors, including market trends, economic indicators, investor sentiment, and company performance. Traditional methods for predicting stock prices, such as fundamental and technical analysis, have limitations, as they rely on historical patterns and market assumptions. With advances in machine learning and deep learning, data-driven models have emerged as powerful tools for time series forecasting.
+We aim to specifically examine the application of machine learning techniques to predict the stock prices of Berkshire Hathaway, a leading investment firm known for its diverse portfolio and market influence (Umer Haddi, 2023). Accurate prediction models for Berkshire Hathaway's stock could significantly assist investors in making informed decisions, managing investment risks, and capitalizing on market trends.
 
-Subject to change.
-
-In this project, our objective is to predict stock price movements using historical data consisting of features such as open price, close price, high and low prices, and trading volume. By analyzing these patterns over time, we seek to develop a model that can identify trends and potential future stock price fluctuations for Berkshire Hathaway. The unpredictability of the stock market poses challenges, but through proper analysis and appropriate modeling techniques, we can aim to improve prediction accuracy and offer valuable insight.
-
-\subsection{Importance of Solution}
-Accurate stock price prediction has significant implications for both individual and institutional investors. A reliable forecasting model can help investors make informed decisions, optimize portfolio management, and reduce financial risks. In addition, stock prediction models can contribute to the broader financial industry by enhancing risk assessment strategies and improving the trading algorithms used by hedge funds and financial institutions.
-
-Berkshire Hathaway is a major player in the global financial market with a diverse portfolio of subsidiaries in multiple industries. Understanding and predicting the stock price movements of such a company can provide insight into broader economic trends and market behavior. Given Berkshire Hathaway’s substantial market capitalization and its influence on investment decisions around the world, an effective predictive model could have far-reaching applications. Investors, traders, and financial analysts could use such a model to make strategic decisions that align with market movements and economic conditions.
-
-Moreover, stock price prediction is not only about maximizing financial gains, but also about mitigating losses. Market volatility can lead to substantial financial risks, and an improved prediction model could help investors develop risk management strategies to protect their investments. By reducing uncertainty, investors can make data-driven decisions rather than relying on speculation or intuition.
-
-\subsection{Project Goal}
-The primary objective of this project is to develop a stock price prediction model using historical stock data from Berkshire Hathaway. Our goal is to explore various time series forecasting techniques, including statistical models and machine learning approaches, to determine the most effective method for predicting stock price trends. The analysis will focus on leveraging features such as open, close, high, low prices, and trading volume to train the model.
-
-Through this research, we aim to achieve the following:
+Utilizing the Berksire-Hathaway historical stock data from Kaggle (Umer Haddi, 2023), we aim to:
 \begin{itemize}
-\item Investigate the effectiveness of different time series prediction models for stock price forecasting.
-
-\item Evaluate the impact of various stock price features on prediction accuracy.
-
-\item Develop a predictive model that can provide insights into future stock price movements with a reasonable degree of accuracy.
-
-\item Provide an in-depth analysis of the results and discuss potential applications and limitations of the model.
-
-\item Assess the feasibility of using machine learning techniques in financial forecasting and their implications for the stock market.
+    \item Analyze and pre-process historical data to identify predictive features.
+    \item Implement and evaluate multiple ML models to determine their forecasting accuracy.
+    \item Assess the practical effectiveness of ML in predicting Berkshire Hathaway’s stock performance.
 \end{itemize}
 
-By accomplishing these goals, we hope to contribute to the growing field of financial analytics and offer valuable insights for investors and analysts looking to enhance their decision-making processes in stock trading. This project will not only serve as an academic exploration of time series forecasting but also provide practical implications for real-world financial markets.
-
-In summary, the study of stock price prediction using historical data is an essential aspect of financial analytics. With the increasing role of technology in market analysis, leveraging advanced machine learning and statistical techniques can enhance our ability to forecast market trends accurately. This research will help bridge the gap between traditional financial analysis and modern predictive modeling, offering valuable contributions to the field of financial forecasting and investment strategy.
-
+Through these objectives, the project seeks to contribute to improving investment strategies and demonstrating the value of ML applications in financial market analysis.
 
 \section{Data Exploration}
 
- Discuss the dataset for this project, any cleaning and normalization steps, and any trends and insights about the dataset (i.e., exploratory data analysis (EDA)).
+\subsection{The Dataset}
 
- \subsection{Cleaning and Normalization}
-Ask what they did with the data
+The dataset used in this study is the Berkshire Hathaway Stock Price Data, sourced from Kaggle (Haddi, 2023). This dataset includes historical stock information consisting of 1,671 daily samples collected from January 2, 2020, to July 29, 2024. Each sample contains eight features: open price, high price, low price, close price, adjusted close price, trading volume, log-transformed closing price, and date converted to an ordinal number format. The dataset is continuous and inherently balanced as it involves time-series data rather than categorical classes. Due to its nature, it requires special pre-processing techniques, such as stationary adjustments and log transformations, to ensure effective application of predictive models.
 
-look after data in 2020, remove empty rows, found the log of the closed columns to use to find PPQ values in PAC CFA graphs
+\subsection{Preprocessing}
+Detailed preprocessing steps applied to the data included:
+\begin{itemize}
+    \item Filtering to include only data from January 2020 onwards to maintain consistency and relevance.
+    \item Handling missing values by forward-filling daily gaps to maintain continuity, ensuring no temporal discontinuities in the dataset.
+    \item Transforming the 'Close' price feature using a logarithmic scale to stabilize variance and manage heterogeneity of variance.
+    \item Calculating the first-order differences on all features to achieve stationarity, a requirement for ARIMA modeling, confirmed through the Augmented Dickey-Fuller (ADF) test.
+    \item Then a moving average and standard deviation features was calculated to improve accuracy, the latter was required for ARIMA.
+\end{itemize}
 
-Put in a picture of how our data is stored
+The preprocessing steps above were critical to improving and ensuring the effectiveness of the predictive models employed in this study.
 
-\includegraphics[scale=0.5]{example-image.jpg} % ball graphs
-
-
- \subsection{Trends and Insights}
- To make sure ARIMA works properly, we remove trends and make the data more stationary.  
- Ask for any insights
- \includegraphics[scale=0.5]{example-image.jpg} %crazy graph blue
+\subsection{Data Analysis}\label{AA}
+\begin{itemize}
+    \item \textbf{Overall Stock Price Trend}: Berkshire Hathaway's stock price exhibited an increasing trend over the analyzed period from January 2020 to July 2024. The closing price started around \$228 in early 2020 and rose significantly, reaching approximately \$438 in July of 2024, suggesting overall growth and positive long-term performance.
+    \item \textbf{Seasonality and Stationarity}: Initial tests for stationarity ADF test indicated non-stationarity in raw closing prices (Test Statistic: -0.52, P-Value: 0.89). Thus, data transformations (log differences) were applied to make the dataset stationary, which is essential for effective ARIMA modeling.
+    \item \textbf{Volume Insights}: The daily traded volume shows significant variability, indicating periods of increased investor activity. The high volatility in trading volume suggests events or news that significantly influenced investor behavior and stock prices.
+    \item \textbf{Model Performance Comparison}: ARIMA and Random Forest models produced similar predictive accuracy (RMSE approximately 22.2 and 22.1, respectively), outperforming Linear Regression, which had notably higher errors (RMSE approximately 31.6). This confirms non-linearity in stock price data and highlights the effectiveness of non-linear models like ARIMA and Random Forest.
+    \item \textbf{Error Analysis}: Both ARIMA and Random Forest displayed relatively low and similar absolute errors (~18), indicating that while there are predictive limitations, both models adequately captured short-term movements in stock prices.
+    \item \textbf{Possible Overfitting with Random Forest}: Random Forest exhibited consistent predictions across test days (constant values), suggesting possible overfitting to the training data. While it resulted in low errors, the model’s predictions lacked variability, potentially limiting its usefulness in dynamic real-world trading scenarios.
+\end{itemize}
 
 \section{Baseline Model}
 
-Once we have cleaned our data, we now need to choose a baseline model to work on.  Below are some of the models and the data they generated for us.
+Before we can process our dataset, we must first decide the best possible model as our baseline. As there are many different baselines, all with their strengths and weaknesses, we explored some of the existing solutions to determine which one to use.
 
-\subsection{Existing Solutions: }
-
-WE SHOULD ADD SOME FIGURES HERE
+\subsection{Existing Solutions}
 
 \begin{itemize}
-\item{Linear Regression: }
-Used for predicting continuous values given independent values.  Such factors we can consider using for this model would be low, open, high, close, or volume.  There is a problem using linear regression, as data in stock prediction is typically nonlinear.
-\includegraphics[scale=0.25]{linreg.png} % screenshots/linreg.png
 
-\item{Random Forest: }
-A Random Forest model does...  Benefits:  provided the best results Negatives:
-\includegraphics[scale=0.25]{example-image.jpg} %screenshots/ranfor.png
+    \item \textbf{Linear Regression}: Linear Regression is a simple model that people have used for stock market predictions. However, after using a Linear Regression model on our data, our predictions were linear and flat. This is likely due to our data being nonlinear, making Linear Regressions an unideal model to use.   
 
-\item{Long Short Term Based Memory Model: }
-An advanced version of the Recurrent-Neural-Networks (RNN), where previous information is used in training.  
-\includegraphics[scale=0.5]{example-image.jpg} %screenshots/arima.png
+    \item \textbf{Random Forests}: Another popular model used in stock market predictions is Random Forests. Random Forests, compared to Linear Regression, is capable of handling non-linear data and provides better results such as a lower MSE. There is some drawbacks, as random forests struggles with time series data.
+
+    \item \textbf{ARIMA}: ARIMA models are also well known in stock market predictions and considered one of the best among other models[1]. Just like Random Forests, ARIMA models can handle non-linear data, but requires the data to be stationary for best performance. 
+
+    \item \textbf{Moving Average}: Moving Average is another consideration as they have been widely used before. They are known being able to be tailored to different time-frames and smoothing price-data, but requires extra implementations, such as a Regression model, to fine-tune signal delays[2].
 
 \end{itemize}
 
-\subsection{Selection of Baseline}
-We chose to use an ARIMA with a Long Short Term Based Memory model as our baseline for this project.
+\subsection{Baseline Model}
 
-\subsection{Baseline Performance}
-Here is the data of the baseline, import a picture of it running
-\\
-\includegraphics[scale=0.5]{example-image.jpg}
+We used a Manual ARIMA Model as our baseline for this project. Compared to other known solutions, ARIMA is known for providing better results and being more accurate.
 
-\subsection{implementation}
-ASK how to implement and what was done
+\begin{itemize}
 
-\section{Improvements}
-Traditional indicators: Using moving averages, RSI, and MACD do not effectively capture nonlinear relationships between data.
+    \item \textbf{Performance}:  \\
+    \includegraphics[scale=0.30]{ARIMA.png} %put a picture of the ARIMA model
 
-Propose enhancements to the machine learning pipeline, such as new feature engineering, baseline model improvements, and or visualization.
+    \item \textbf{Further Analysis}:
+    The baseline model offered several benefits, such as being able to handle data non-stationary, auto regress on past values, and eliminate the need for external values. However, the model also came with its own issues. The predictions line became linear, indicating that our model is most likely oversimplified, and the model struggled with sudden shocks, such as the COVID-19 pandemic.
 
-one idea was to use:  smooth moving averages, simple moving averages for 10-50 days before
+\end{itemize}
 
-volatility, creating those in order to get more accurate recent data, cause right now we are using 2 years of data, only use recent data to determine better predictions
+\section{Model Improvements}
 
-combining random forests with ARIMA, maybe even linreg, while mixing them with weights to have a more accurate prediction, take the pros and cons of models to make a much better prediction
-
+\section{Distribution of Work}
 
 \begin{thebibliography}{00}
-\bibitem{b1}I. Parmar et al., “Stock Market Prediction Using Machine Learning,” 2018 First International Conference on Secure Cyber Computing and Communication (ICSCCC), Dec. 2018, doi: https://doi.org/10.1109/icsccc.2018.8703332.
-‌
-\end{thebibliography}
-\vspace{12pt}
+\bibitem{b1} A. A. Ariyo, A. O. Adewumi and C. K. Ayo, "Stock Price Prediction Using the ARIMA Model," 2014 UKSim-AMSS 16th International Conference on Computer Modelling and Simulation, Cambridge, UK, 2014, pp. 106-112, doi: 10.1109/UKSim.2014.67. keywords: {Predictive models;Indexes;Time series analysis;Forecasting;Data models;Computational modeling;Mathematical model;ARIMA model;Stock Price prediction;Stock market;Short-term prediction}
+\bibitem{b2} S. Dinesh, N. R. R, S. P. Anusha and S. R, "Prediction of Trends in Stock Market using Moving Averages and Machine Learning," 2021 6th International Conference for Convergence in Technology (I2CT), Maharashtra, India, 2021, pp. 1-5, doi: 10.1109/I2CT51068.2021.9418097. keywords: {Machine learning algorithms;Machine learning;Predictive models;Tools;Market research;Prediction algorithms;Stock markets;Moving average;Moving average Crossover;Trend prediction;Regression;Machine Learning;Stock Market}
 
+
+
+
+
+\end{thebibliography}
 
 \end{document}
-
-
