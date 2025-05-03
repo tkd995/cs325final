@@ -134,10 +134,16 @@ The initial model development utilized basic ARIMA, Linear Regression, and Rando
 
 \begin{enumerate}
     \item ARIMA to SARIMA Transition: After looking at the seasonal decomposition of the time series data, we identified significant seasonal patterns that the classic ARIMA model failed to capture. By implementing SARIMA (seasonal ARIMA), we enhanced the model’s ability to account for these patterns. We aimed to reduce the impact seasonality would have within our dataset, but SARIMA was able to strength our model further.
+    
+    \includegraphics[scale=0.25]{arimadonenow.png} %final-screenshots/SARIMA_results.jpg
 
     \item Auto-ARIMA Parameter Optimization: Rather than relying on manual calculations to optimize our hyper parameters, we implemented Auto-ARIMA to calculate the most optimal configuration. This process determined that (2,1,0) was the strongest combination.
+    
+    \includegraphics[scale=0.25]{arimadonenow.png} %final-screenshots/auto_arima_results.jpg
 
     \item Ensemble Approach: To leverage the pros and cons of the SARIMA and Random Forest Regressor models, we implemented a dynamically weighted strategy. Using a rolling window of 10 time steps, we calculated the recent Mean Squared Error (MSE) of each model’s predictions. We then applied inverse-error weighting to the predictions, giving a higher weight to the model with a lower error. At each step, the ensemble prediction was computed as a weighted average of the two models’ output using the weights. This allowed the ensemble to adapt over time, reducing the error and emphasizing the better performing model.
+    
+    \includegraphics[scale=0.25]{arimadonenow.png} %final-screenshots/ensemble_results
 
 \end{enumerate}
 
